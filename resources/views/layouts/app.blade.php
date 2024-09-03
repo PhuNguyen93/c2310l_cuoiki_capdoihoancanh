@@ -7,6 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -14,10 +16,7 @@
     <div id="app">
         <!-- Header -->
         <header>
-            <nav>
-                <a href="{{ url('/') }}">Home</a>
-                <a href="{{ route('vehicles.index') }}">Vehicles</a>
-            </nav>
+
         </header>
 
         <!-- Main Content -->
@@ -27,11 +26,9 @@
 
         <!-- Footer -->
         <footer>
-            <p>&copy; {{ date('Y') }} Your Company. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }}</p>
         </footer>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
