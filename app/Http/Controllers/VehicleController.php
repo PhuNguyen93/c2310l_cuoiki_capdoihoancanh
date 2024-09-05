@@ -34,8 +34,8 @@ class VehicleController extends Controller
         // Sắp xếp dữ liệu theo yêu cầu
         $query->orderBy($sortBy, $sortOrder);
 
-        // Phân trang dữ liệu, mỗi trang hiển thị 10 kết quả
-        $vehicles = $query->paginate(10);
+        // Phân trang dữ liệu, mỗi trang hiển thị 5 kết quả
+        $vehicles = $query->paginate(5);
 
         // Trả về view với dữ liệu đã được xử lý
         return view('vehicles.index', compact('vehicles', 'search', 'status', 'sortBy', 'sortOrder'));

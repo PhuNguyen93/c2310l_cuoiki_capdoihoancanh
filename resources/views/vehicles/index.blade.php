@@ -8,8 +8,9 @@
         <form method="GET" action="{{ route('vehicles.index') }}" class="mb-4">
             <div class="d-flex">
                 <input type="text" name="search" placeholder="Search by name or license plate"
-                    value="{{ request('search') }}" class="form-control me-2" style="flex-grow: 1;">
-                <button type="submit" class="btn btn-primary">Search</button>
+                    value="{{ request('search') }}" class="form-control w-25 me-2">
+                <button type="submit" class="btn btn-primary ">Search</button>
+                <a href="{{ route('vehicles.create') }}" class="btn btn-primary ms-auto">Add New Car</a>
             </div>
         </form>
         <!-- Bảng danh sách xe -->
@@ -80,8 +81,8 @@
         </div>
 
         <!-- Phân trang -->
-        <div class="d-flex justify-content-center mt-4">
-            {{ $vehicles->appends(request()->query())->links() }}
+        <div class="">
+            {{ $vehicles->appends(request()->query())->links('pagination::bootstrap-5') }}
         </div>
     </div>
 @endsection

@@ -18,14 +18,14 @@
             @endif
         </div>
 
-        <div class="d-flex justify-content-between">
-            <a href="{{ route('vehicles.edit', $vehicle) }}" class="btn btn-warning">Edit</a>
+        <div class="d-flex">
+            <a href="{{ route('vehicles.edit', $vehicle) }}" class="btn btn-warning me-2">Edit</a>
             <form action="{{ route('vehicles.destroy', $vehicle) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger me-2">Delete</button>
             </form>
-            <a href="{{ route('vehicles.index') }}" class="btn btn-secondary">Back to list</a>
+            <a href="{{ route('vehicles.index') }}" class="btn btn-secondary">Back</a>
         </div>
     </div>
 @endsection

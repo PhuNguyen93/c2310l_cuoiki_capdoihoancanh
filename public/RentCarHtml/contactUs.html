@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BP Car Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+        <!-- Navbar -->     
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <!-- Logo -->
+            <img
+              src="assets/images/logo2.png"
+              alt="MyBrand Logo"
+              width="50"
+              height="50"
+              class="d-inline-block align-text-top"
+            />
+            <!-- Menu button -->
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- dropdowns-->
+            <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- Home-->
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <!-- Dropdown menu -->
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Services
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Web Development</a></li>
+                    <li><a class="dropdown-item" href="#">SEO</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#">Consulting</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact</a>
+                </li>
+              </ul>
+    
+              <!-- Search
+              <form class="d-flex">
+                <input
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button class="btn btn-outline-success" type="submit">
+                  Search
+                </button> -->
+              </form>
+    
+              <!-- Login/ Sign up -->
+              <ul class="navbar-nav ms-3 mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a>
+                </li>
+                <li class="nav-item">
+                  </i><a class="nav-link" href="#"><i class="bi bi-person-plus-fill me-2"></i>Sign up</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container mt-5">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-container">
+                  <h3 class="mb-4">Contact Us</h3>
+                  <form action="#" method="post">
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter your first name">
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Enter your last name">
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="mb-3">
+                      <label for="phone" class="form-label">Phone Number</label>
+                      <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="mb-3">
+                      <label for="subject" class="form-label">Subject</label>
+                      <select id="subject" class="form-select">
+                        <option selected>Select subject</option>
+                        <option value="1">General Inquiry</option>
+                        <option value="2">Support</option>
+                        <option value="3">Feedback</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="message" class="form-label">Your message</label>
+                      <textarea class="form-control" id="message" rows="4" placeholder="Leave a comment..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-custom">Send message</button>
+                  </form>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Company Information</h5>
+                    <p><strong>RealRentCar LLC</strong><br>Location: Morocco</p>
+                    <p><strong>Address:</strong><br>DR ANABDOUR AMMELEN TIZNIT<br>Zip Code/Postal code: 85450</p>
+                    <p><strong>Call us:</strong><br>+212600000000</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </main>
+    <footer class="bg-light text-dark pt-5 pb-4">
+        <div class="container text-center text-md-start">
+          <div class="row">
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
+              <h6 class="text-uppercase fw-bold">BP Car Services</h6>
+              <p>0367777747</p>
+              <p>Support Hotline: 7AM - 10PM</p>
+              <p>Email: nguyenphu0809@gmail.com</p>
+              <p>Send us an email</p>
+              <div class="mt-2">
+                <a href="#" class="text-dark me-3"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-dark me-3"><i class="bi bi-tiktok"></i></a>
+              </div>
+            </div>
+    
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <h6 class="text-uppercase fw-bold">Policy</h6>
+              <p><a href="#" class="text-dark">Terms and Conditions</a></p>
+              <p><a href="#" class="text-dark">Operational Regulations</a></p>
+              <p><a href="#" class="text-dark">Information Security</a></p>
+              <p><a href="#" class="text-dark">Dispute Resolution</a></p>
+            </div>
+    
+            <!-- <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <h6 class="text-uppercase fw-bold">Tìm Hiểu Thêm</h6>
+              <p><a href="#" class="text-dark">Hướng dẫn chung</a></p>
+              <p><a href="#" class="text-dark">Hướng dẫn đặt xe</a></p>
+              <p><a href="#" class="text-dark">Hướng dẫn thanh toán</a></p>
+              <p><a href="#" class="text-dark">Hỏi và trả lời</a></p>
+            </div>
+    
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+              <h6 class="text-uppercase fw-bold">Đối Tác</h6>
+              <p><a href="#" class="text-dark">Đăng ký chủ xe</a></p>
+              <p><a href="#" class="text-dark">Đăng ký GPS MITRACK 4G</a></p>
+              <p><a href="#" class="text-dark">Đăng ký cho thuê xe dài hạn MICAR</a></p>
+            </div>
+          </div> -->
+    
+          <div class="row">
+            <div class="col-md-12 text-center pt-3">
+              <p>&copy; 2024 BP Car Services. All rights reserved.</p>
+              <p>Addres:  </p>
+            </div>
+          </div>
+        </div>
+    </footer>
+</body>
+</html>

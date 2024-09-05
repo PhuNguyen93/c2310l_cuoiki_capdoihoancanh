@@ -30,6 +30,7 @@
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
+            <a href="{{ route('vehicles.index') }}" class="btn btn-primary ms-auto">Back</a>
         </form>
     </div>
 @endsection
