@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light " >
     <div class="container-fluid">
         <img src="{{ asset('assets/images/logo2.png') }}" alt="BP Car Services" width="50" height="50" class="d-inline-block align-text-top">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,3 +36,26 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .navbar-dark .nav-link {
+        color: #f8f9fa; /* Màu chữ sáng hơn */
+    }
+
+    .navbar-dark .nav-link:hover {
+        color: #ffc107; /* Màu vàng khi hover */
+    }
+
+    .navbar-dark .dropdown-menu {
+         background-color: #6c757d; /* Nền tối cho dropdown */
+    }
+
+    .navbar-dark .dropdown-item {
+        color: #f8f9fa; /* Màu chữ sáng cho item dropdown */
+    }
+
+    .navbar-dark .dropdown-item:hover {
+        background-color: #ffc107; /* Màu nền khi hover */
+        color: #343a40; /* Màu chữ khi hover */
+    }
+</style>
