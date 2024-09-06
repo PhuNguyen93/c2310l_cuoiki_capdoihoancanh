@@ -65,21 +65,27 @@ p {
 <!-- Product Section -->
 <div class="container mt-5">
     <div class="text-center mb-5">
-        <h1 class="fw-bold">CARS FOR RENT</h1>
+        <h1 class="fw-bold display-4 text-info">CARS FOR RENT</h1>
         <hr class="my-4">
         <p class="lead">Find your perfect rental car from our wide selection!</p>
     </div>
     <div class="row">
         @foreach ($vehicles as $vehicle)
             <div class="col-md-4 mb-4">
-                <div class="card shadow-sm border-light">
-                    <img src="{{ $vehicle->image ? asset('storage/' . $vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top" alt="{{ $vehicle->vehicle_name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $vehicle->vehicle_name }}</h5>
-                        <p class="card-text"><strong>Rental Price:</strong> ${{ $vehicle->rental_price }}/day</p>
-                        <p class="card-text"><strong>Seats:</strong> {{ $vehicle->number_of_seats }}</p>
-                        <p class="card-text"><strong>License Plate:</strong> {{ $vehicle->license_plate }}</p>
-                        <a href="#" class="btn btn-success">Rent Now</a>
+                <div class="card shadow border-light rounded-lg">
+                    <img src="{{ $vehicle->image ? asset('storage/' . $vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top rounded-top" alt="{{ $vehicle->vehicle_name }}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-dark fw-bold">{{ $vehicle->vehicle_name }}</h5>
+                        <p class="card-text text-muted">
+                            <strong class="text-success">Rental Price:</strong> ${{ number_format($vehicle->rental_price, 2) }}/day
+                        </p>
+                        <p class="card-text text-muted">
+                            <strong class="text-success">Seats:</strong> {{ $vehicle->number_of_seats }}
+                        </p>
+                        <p class="card-text text-muted">
+                            <strong class="text-success">License Plate:</strong> {{ $vehicle->license_plate }}
+                        </p>
+                        <a href="#" class="btn btn-info btn-lg">Rent Now</a>
                     </div>
                 </div>
             </div>
