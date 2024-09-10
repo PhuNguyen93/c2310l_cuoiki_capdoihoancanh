@@ -11,4 +11,7 @@ class HomeController extends Controller
         $vehicles = Vehicle::all();
         return view('home', compact('vehicles'));
     }
+    public function contact(){
+        return view('contact-us');
+    }
 }
