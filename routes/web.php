@@ -1,6 +1,7 @@
 <?php
-
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WarehouseStaffController;
@@ -20,6 +21,7 @@ Route::get('/vehicles/{vehicle}/edit', [VehicleController::class, 'edit'])->name
 Route::put('/vehicles/{vehicle}', [VehicleController::class, 'update'])->name('vehicles.update');
 Route::delete('/vehicles/{vehicle}', [VehicleController::class, 'destroy'])->name('vehicles.destroy');
 
+<<<<<<< Updated upstream
 // Tìm kiếm, lọc, phân trang cho nhân viên quản kho
 Route::resource('warehouse-staff', WarehouseStaffController::class);
 Route::get('warehouse-staff/search', [WarehouseStaffController::class, 'index'])->name('warehouse-staff.search');
@@ -33,3 +35,18 @@ Route::resource('borrow-histories', BorrowHistoryController::class);
 Route::get('borrow-histories/search', [BorrowHistoryController::class, 'index'])->name('borrow-histories.search');
 
 
+=======
+
+
+// Trang đăng nhập
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+// Xử lý việc đăng nhập
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+// Trang đăng ký
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+
+// Xử lý đăng ký
+Route::post('/register', [RegisterController::class, 'register']);
+>>>>>>> Stashed changes
