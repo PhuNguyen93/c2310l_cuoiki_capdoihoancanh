@@ -8,9 +8,9 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\BorrowHistoryController;
 
 // Hiển thị trang chủ
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
+//hiển thị trang liên hệ
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
 Route::get('/vehicles/create', [VehicleController::class, 'create'])->name('vehicles.create');
