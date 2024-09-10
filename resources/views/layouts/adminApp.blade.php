@@ -18,18 +18,23 @@
                 <div class="position-sticky pt-3">
                     <div class="user-info text-center mb-4">
                         <img src="https://via.placeholder.com/50" class="rounded-circle mb-3" alt="User Avatar">
-                        <h5 class="text-light">Nguyen Minh Phu</h5>
+                        <h5 class="text-light">Dong Doi Dua Day</h5>
                         <p class="text-light">Web Developer</p>
                     </div>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active text-white" href="{{ route('vehicles.index') }}">
-                                <i class="bi bi-house"></i> Vehicles Index
+                            <a class="nav-link active text-white" href="{{ route('dashboard') }}">
+                                <i class="bi bi-house"></i>Dash Board
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('vehicles.create') }}">
-                                <i class="bi bi-ui-radios-grid"></i> Add New Vehicles
+                            <a class="nav-link active text-white" href="{{ route('vehicles.index') }}">
+                                <i class="bi bi-house"></i> Vehicles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('drivers.index') }}">
+                                <i class="bi bi-ui-radios-grid"></i>Drivers
                             </a>
                         </li>
                     </ul>
@@ -37,6 +42,10 @@
             </nav>
 
             <main class="col-md-9">
+                <div class="">
+                    <h1 class="h2">Dashboard</h1>
+                    <p class="text-muted">A free and open source Bootstrap 5 admin template</p>
+                </div>
                 @yield('content')
             </main>
         </div>

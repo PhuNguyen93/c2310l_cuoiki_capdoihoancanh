@@ -9,20 +9,33 @@ class DriverController extends Controller
 {
     // Hiển thị danh sách tài xế (Read, Sort, Filter, Pagination)
     public function index(Request $request)
-    {
-        $search = $request->input('search');
-        $sort = $request->input('sort', 'name');
-        $direction = $request->input('direction', 'asc');
+{
 
-        $drivers = Driver::when($search, function($query, $search) {
-                return $query->where('name', 'like', "%$search%")
-                             ->orWhere('license_number', 'like', "%$search%");
-            })
-            ->orderBy($sort, $direction)
-            ->paginate(10);  // Phân trang
+    // Lấy dữ liệu từ các input tìm kiếm và sắp xếp
+    $search = $request->input('search');
+    $sortBy = $request->input('sort_by', 'name');  // Mặc định sắp xếp theo tên
+    $sortOrder = $request->input('sort_order', 'asc');  // Mặc định thứ tự sắp xếp là tăng dần
 
-        return view('drivers.index', compact('drivers'));
+    // Tạo query để lấy danh sách tài xế
+    $query = Driver::query();
+
+    // Tìm kiếm theo tên hoặc số giấy phép lái xe
+    if ($search) {
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhere('license_number', 'like', "%{$search}%");
+        });
     }
+
+    // Sắp xếp dữ liệu theo yêu cầu
+    $query->orderBy($sortBy, $sortOrder);
+
+    // Phân trang dữ liệu, mỗi trang hiển thị 5 kết quả
+    $drivers = $query->paginate(5);
+
+    // Trả về view với dữ liệu đã được xử lý
+    return view('drivers.index', compact('drivers', 'search', 'sortBy', 'sortOrder',));
+}
 
     // Hiển thị form tạo mới (Create Form)
     public function create()

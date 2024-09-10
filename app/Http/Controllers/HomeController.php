@@ -14,4 +14,8 @@ class HomeController extends Controller
     public function contact(){
         return view('contact-us');
     }
+
+    public function dashboard(){
+        return view('dashboard');
+    }
 }

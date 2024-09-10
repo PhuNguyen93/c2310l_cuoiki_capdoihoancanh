@@ -12,6 +12,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 //hiển thị trang liên hệ
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
 Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
 Route::get('/vehicles/create', [VehicleController::class, 'create'])->name('vehicles.create');
 Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicles.store');
