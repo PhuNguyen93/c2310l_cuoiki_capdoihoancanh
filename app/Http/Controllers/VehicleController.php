@@ -8,71 +8,53 @@ use App\Models\Vehicle;
 
 class VehicleController extends Controller
 {
-
+    // Hiển thị danh sách xe (Read, Sort, Filter, Pagination)
     public function index(Request $request)
     {
-        // Lấy dữ liệu từ các input tìm kiếm, lọc, sắp xếp
+        // Tìm kiếm theo biển số xe hoặc model
         $search = $request->input('search');
+
+        // Lọc theo trạng thái
         $status = $request->input('status');
-        $sortBy = $request->input('sort_by', 'created_at');  // Sắp xếp theo trường nào (mặc định là 'created_at')
-        $sortOrder = $request->input('sort_order', 'desc');  // Thứ tự sắp xếp (mặc định là 'desc')
 
-        // Tạo query để lấy danh sách xe
-        $query = Vehicle::query();
+        // Sắp xếp (theo model hoặc brand)
+        $sort = $request->input('sort', 'model');
+        $direction = $request->input('direction', 'asc');
 
-        // Tìm kiếm theo tên xe hoặc biển số xe
-        if ($search) {
-            $query->where(function ($q) use ($search) {
-                $q->where('vehicle_name', 'like', "%{$search}%")
-                  ->orWhere('license_plate', 'like', "%{$search}%");
-            });
-        }
+        // Lấy danh sách xe, lọc và sắp xếp
+        $vehicles = Vehicle::when($search, function($query, $search) {
+                return $query->where('license_plate', 'like', "%$search%")
+                             ->orWhere('model', 'like', "%$search%");
+            })
+            ->when($status, function($query, $status) {
+                return $query->where('status', $status);
+            })
+            ->orderBy($sort, $direction)
+            ->paginate(10);  // Phân trang với mỗi trang 10 xe
 
-        // Lọc theo trạng thái xe
-        if ($status) {
-            $query->where('status', $status);
-        }
-
-        // Sắp xếp dữ liệu theo yêu cầu
-        $query->orderBy($sortBy, $sortOrder);
-
-        // Phân trang dữ liệu, mỗi trang hiển thị 5 kết quả
-        $vehicles = $query->paginate(5);
-
-        // Trả về view với dữ liệu đã được xử lý
-        return view('vehicles.index', compact('vehicles', 'search', 'status', 'sortBy', 'sortOrder'));
+        return view('vehicles.index', compact('vehicles'));
     }
 
+    // Hiển thị form tạo mới (Create Form)
     public function create()
     {
         return view('vehicles.create');
     }
 
+    // Lưu thông tin xe mới (Store)
     public function store(Request $request)
     {
         $request->validate([
-            'vehicle_name' => 'required|string|max:255',
-            'license_plate' => 'required|string|max:20|unique:vehicles',
-            'image' => 'nullable|image|max:2048',
-            'rental_price' => 'required|numeric|min:0',
+            'license_plate' => 'required|unique:vehicles|max:20',
+            'model' => 'required|max:100',
+            'brand' => 'required|max:100',
+            'status' => 'required|in:available,borrowed',
         ]);
 
-        // Lưu hình ảnh
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('vehicle_images', 'public');
-        }
+        // Tạo xe mới
+        Vehicle::create($request->all());
 
-        // Tạo xe mới với dữ liệu đã validate
-        Vehicle::create([
-            'vehicle_name' => $request->input('vehicle_name'),
-            'license_plate' => $request->input('license_plate'),
-            'image' => $imagePath,
-            'rental_price' => $request->input('rental_price'),
-            'status' => $request->input('status', 'Available'),
-        ]);
-
-        return redirect()->route('vehicles.index')->with('success', 'Vehicle created successfully.');
+        return redirect()->route('vehicles.index')->with('success', 'Xe đã được thêm thành công!');
     }
 
     public function show(Vehicle $vehicle)
@@ -85,29 +67,21 @@ class VehicleController extends Controller
         return view('vehicles.edit', compact('vehicle'));
     }
 
+    // Cập nhật thông tin xe (Update)
     public function update(Request $request, Vehicle $vehicle)
     {
+        // Validate the request
         $request->validate([
-            'vehicle_name' => 'required|string|max:255',
-            'license_plate' => 'required|string|max:20|unique:vehicles,license_plate,'.$vehicle->id,
-            'image' => 'nullable|image|max:2048',
-            'rental_price' => 'required|numeric|min:0',
+            'license_plate' => 'required|max:20|unique:vehicles,license_plate,' . $vehicle->id,
+            'model' => 'required|max:100',
+            'brand' => 'required|max:100',
+            'status' => 'required|in:available,borrowed',
         ]);
 
-        // Cập nhật hình ảnh
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('vehicle_images', 'public');
-            $vehicle->image = $imagePath;
-        }
+        // Cập nhật thông tin xe
+        $vehicle->update($request->all());
 
-        $vehicle->update([
-            'vehicle_name' => $request->input('vehicle_name'),
-            'license_plate' => $request->input('license_plate'),
-            'rental_price' => $request->input('rental_price'),
-            'status' => $request->input('status', $vehicle->status),
-        ]);
-
-        return redirect()->route('vehicles.index')->with('success', 'Vehicle updated successfully.');
+        return redirect()->route('vehicles.index')->with('success', 'Thông tin xe đã được cập nhật!');
     }
 
     public function destroy(Vehicle $vehicle)
