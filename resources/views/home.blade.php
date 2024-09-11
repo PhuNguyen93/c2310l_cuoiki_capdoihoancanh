@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
 <div class="container-fluid">
     <!-- Slider -->
     <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
@@ -11,7 +9,6 @@
             <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{ asset('assets/images/car1.jpg') }}" class="d-block w-100 rounded" alt="Image 1">
@@ -35,7 +32,6 @@
                 </div>
             </div>
         </div>
-
         <button class="carousel-control-prev" type="button" data-bs-target="#imageSlider" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -46,21 +42,6 @@
         </button>
     </div>
 </div>
-
-<style>
-.carousel-caption {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 15px; /* Tạo sự mềm mại cho các góc */
-    padding: 20px; /* Padding thêm cho chú thích */
-}
-h5 {
-    font-family: 'Arial', sans-serif; /* Phong cách chữ hiện đại hơn */
-    font-weight: bold; /* Chữ đậm hơn */
-}
-p {
-    font-family: 'Arial', sans-serif; /* Phong cách chữ nhất quán */
-}
-</style>
 
 <!-- Product Section -->
 <div class="container mt-5">
@@ -79,7 +60,7 @@ p {
                         <p class="card-text"><strong>Rental Price:</strong> ${{ $vehicle->rental_price }}/day</p>
                         <p class="card-text"><strong>Seats:</strong> {{ $vehicle->number_of_seats }}</p>
                         <p class="card-text"><strong>License Plate:</strong> {{ $vehicle->license_plate }}</p>
-                        <a href="#" class="btn btn-success">Rent Now</a>
+                        <a href="{{ route('checkout', ['vehicleId' => $vehicle->id]) }}" class="btn btn-success">Rent Now</a>
                     </div>
                 </div>
             </div>
@@ -90,11 +71,7 @@ p {
 <!-- Why Choose Us Section -->
 <div class="container my-5 p-5 bg-light rounded-3 shadow-lg">
     <h1 class="text-center mb-4 text-info">Why Choose Us</h1>
-    <p class="text-center mb-5 text-secondary">We prioritize your satisfaction and strive to make your car rental experience as
-            seamless as possible. With our wide selection of well-maintained vehicles, competitive prices, and simple
-            booking process, you can trust us to meet your needs. Our dedicated customer service team is available around
-            the clock to assist you, ensuring that you receive the support you deserve. Whether you need a car for a weekend
-            getaway or a long road trip, choose us for a hassle-free and enjoyable journey.</p>
+    <p class="text-center mb-5 text-secondary">We prioritize your satisfaction and strive to make your car rental experience as seamless as possible. With our wide selection of well-maintained vehicles, competitive prices, and simple booking process, you can trust us to meet your needs. Our dedicated customer service team is available around the clock to assist you, ensuring that you receive the support you deserve. Whether you need a car for a weekend getaway or a long road trip, choose us for a hassle-free and enjoyable journey.</p>
 
     <div class="row text-center g-4">
         @foreach([
@@ -116,24 +93,6 @@ p {
     </div>
 </div>
 
-<style>
-.service-box {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Cho phép các khung mở rộng theo chiều cao */
-    height: 100%; /* Đảm bảo tất cả các khung đều có chiều cao nhất quán */
-}
-</style>
-
-<style>
-.service-box {
-    height: 100%; /* Đảm bảo tất cả khung có chiều cao bằng nhau */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Để các phần tử bên trong được phân bố đều */
-}
-</style>
-
 <!-- Information Section -->
 <div class="container my-5 p-5 bg-info rounded-3 text-light shadow-lg">
     <div class="row align-items-center">
@@ -150,5 +109,4 @@ p {
         </div>
     </div>
 </div>
-
 @endsection
