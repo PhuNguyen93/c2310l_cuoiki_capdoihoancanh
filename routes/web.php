@@ -23,7 +23,7 @@ Route::get('/vehicles/{vehicle}/edit', [VehicleController::class, 'edit'])->name
 Route::put('/vehicles/{vehicle}', [VehicleController::class, 'update'])->name('vehicles.update');
 Route::delete('/vehicles/{vehicle}', [VehicleController::class, 'destroy'])->name('vehicles.destroy');
 
-<<<<<<< Updated upstream
+
 // Tìm kiếm, lọc, phân trang cho nhân viên quản kho
 Route::resource('warehouse-staff', WarehouseStaffController::class);
 Route::get('warehouse-staff/search', [WarehouseStaffController::class, 'index'])->name('warehouse-staff.search');
@@ -37,7 +37,7 @@ Route::resource('borrow-histories', BorrowHistoryController::class);
 Route::get('borrow-histories/search', [BorrowHistoryController::class, 'index'])->name('borrow-histories.search');
 
 
-=======
+
 
 
 // Trang đăng nhập
@@ -51,4 +51,8 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 
 // Xử lý đăng ký
 Route::post('/register', [RegisterController::class, 'register']);
->>>>>>> Stashed changes
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

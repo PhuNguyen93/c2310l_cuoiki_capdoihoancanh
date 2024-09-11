@@ -2,19 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
-        $vehicles = Vehicle::all();
-        return view('home', compact('vehicles'));
-    }
-    public function contact(){
-        return view('contact-us');
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
+    }
     public function dashboard(){
         return view('dashboard');
     }
