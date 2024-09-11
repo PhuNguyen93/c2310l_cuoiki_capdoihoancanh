@@ -111,7 +111,7 @@ body {
     transform: translateY(-3px); /* Nâng nhẹ lên khi hover */
 }
 
-/* Nút Sign Up */
+
 .btn-signup {
     background: linear-gradient(to right, #dc3545, #c82333); /* Gradient cho nút Sign Up */
 }
