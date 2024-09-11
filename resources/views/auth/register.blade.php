@@ -47,14 +47,14 @@
                                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
                             </div>
 
-                            <div class="form-group mb-3">
+                            {{-- <div class="form-group mb-3">
                                 <label for="role_id">Role</label>
                                 <select name="role_id" id="role_id" class="form-control" required>
                                     @foreach($roles as $role)
                                         <option value="{{ $role->id }}">{{ $role->role_name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
 
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary">Register</button>

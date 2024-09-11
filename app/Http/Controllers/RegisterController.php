@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,8 +10,7 @@ class RegisterController extends Controller
 {
     public function showRegistrationForm()
     {
-        $roles = Role::all(); // Lấy danh sách các vai trò từ bảng roles
-        return view('auth.register', compact('roles'));
+        return view('auth.register'); // Không cần truyền danh sách roles nữa
     }
 
     public function register(Request $request)
@@ -22,18 +19,20 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:3', 'confirmed'],
-            'role_id' => ['required', 'exists:roles,id'],
         ]);
 
+        // Tạo tài khoản với role_id mặc định là 1 (Driver)
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'role_id' => $validated['role_id'],
+            'role_id' => 1, // Role_id là 1 cho tài xế
         ]);
 
+        // Đăng nhập người dùng sau khi đăng ký
         Auth::login($user);
 
-        return redirect()->intended('dashboard');
+        // Chuyển hướng đến trang home sau khi đăng nhập thành công
+        return redirect()->route('home');
     }
 }

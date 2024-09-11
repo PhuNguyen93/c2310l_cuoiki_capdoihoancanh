@@ -41,6 +41,7 @@ class VehicleController extends Controller
         // Trả về view với dữ liệu đã được xử lý
         return view('vehicles.index', compact('vehicles', 'search', 'status', 'sortBy', 'sortOrder'));
     }
+
     // Hiển thị form tạo mới (Create Form)
     public function create()
     {
@@ -50,7 +51,7 @@ class VehicleController extends Controller
     // Lưu thông tin xe mới (Store)
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'license_plate' => 'required|unique:vehicles|max:20',
             'model' => 'required|max:100',
             'brand' => 'required|max:100',
@@ -58,16 +59,18 @@ class VehicleController extends Controller
         ]);
 
         // Tạo xe mới
-        Vehicle::create($request->all());
+        Vehicle::create($validatedData);
 
         return redirect()->route('vehicles.index')->with('success', 'Xe đã được thêm thành công!');
     }
 
+    // Hiển thị chi tiết xe
     public function show(Vehicle $vehicle)
     {
         return view('vehicles.show', compact('vehicle'));
     }
 
+    // Hiển thị form chỉnh sửa xe (Edit Form)
     public function edit(Vehicle $vehicle)
     {
         return view('vehicles.edit', compact('vehicle'));
@@ -76,8 +79,7 @@ class VehicleController extends Controller
     // Cập nhật thông tin xe (Update)
     public function update(Request $request, Vehicle $vehicle)
     {
-        // Validate the request
-        $request->validate([
+        $validatedData = $request->validate([
             'license_plate' => 'required|max:20|unique:vehicles,license_plate,' . $vehicle->id,
             'model' => 'required|max:100',
             'brand' => 'required|max:100',
@@ -85,15 +87,15 @@ class VehicleController extends Controller
         ]);
 
         // Cập nhật thông tin xe
-        $vehicle->update($request->all());
+        $vehicle->update($validatedData);
 
         return redirect()->route('vehicles.index')->with('success', 'Thông tin xe đã được cập nhật!');
     }
 
+    // Xóa thông tin xe (Delete)
     public function destroy(Vehicle $vehicle)
     {
         $vehicle->delete();
-        return redirect()->route('vehicles.index')->with('success', 'Vehicle deleted successfully.');
+        return redirect()->route('vehicles.index')->with('success', 'Xe đã được xóa thành công!');
     }
 }
-
