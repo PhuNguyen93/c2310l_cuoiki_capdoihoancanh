@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <h1 class="text-center my-4">Vehicle List</h1>
-
+        <!-- Form tìm kiếm -->
         <form method="GET" action="{{ route('vehicles.index') }}" class="mb-4">
             <div class="d-flex">
                 <input type="text" name="search" placeholder="Search by name or license plate"
@@ -13,7 +13,7 @@
                 <a href="{{ route('vehicles.create') }}" class="btn btn-primary ms-auto">Add New Car</a>
             </div>
         </form>
-
+        <!-- Bảng danh sách xe -->
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead class="table-primary">
@@ -80,6 +80,7 @@
             </table>
         </div>
 
+        <!-- Phân trang -->
         <div class="">
             {{ $vehicles->appends(request()->query())->links('pagination::bootstrap-5') }}
         </div>

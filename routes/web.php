@@ -7,20 +7,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WarehouseStaffController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\BorrowHistoryController;
-use App\Models\Vehicle;
-use Illuminate\Support\Facades\Auth;
-
-Route::get('/', function () {
-    // $vehicles = Vehicle::all();
-    return view('home');
-});
 
 // Hiển thị trang chủ
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-//hiển thị trang liên hệ
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
 
 Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
 Route::get('/vehicles/create', [VehicleController::class, 'create'])->name('vehicles.create');
@@ -30,8 +23,11 @@ Route::get('/vehicles/{vehicle}/edit', [VehicleController::class, 'edit'])->name
 Route::put('/vehicles/{vehicle}', [VehicleController::class, 'update'])->name('vehicles.update');
 Route::delete('/vehicles/{vehicle}', [VehicleController::class, 'destroy'])->name('vehicles.destroy');
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 // Tìm kiếm, lọc, phân trang cho nhân viên quản kho
 Route::resource('warehouse-staff', WarehouseStaffController::class);
 Route::get('warehouse-staff/search', [WarehouseStaffController::class, 'index'])->name('warehouse-staff.search');
@@ -45,12 +41,24 @@ Route::resource('borrow-histories', BorrowHistoryController::class);
 Route::get('borrow-histories/search', [BorrowHistoryController::class, 'index'])->name('borrow-histories.search');
 
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 
 // Trang đăng nhập
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
+// Xử lý việc đăng nhập
+Route::post('/login', [LoginController::class, 'authenticate']);
 
-Auth::routes();
+// Trang đăng ký
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 
+<<<<<<< Updated upstream
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+=======
+// Xử lý đăng ký
+Route::post('/register', [RegisterController::class, 'register']);
+>>>>>>> Stashed changes

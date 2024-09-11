@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Driver;
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
 
@@ -11,30 +10,37 @@ class VehicleController extends Controller
     // Hiển thị danh sách xe (Read, Sort, Filter, Pagination)
     public function index(Request $request)
     {
-        // Tìm kiếm theo biển số xe hoặc model
+        // Lấy dữ liệu từ các input tìm kiếm, lọc, sắp xếp
         $search = $request->input('search');
-
-        // Lọc theo trạng thái
         $status = $request->input('status');
+        $sortBy = $request->input('sort_by', 'created_at');  // Sắp xếp theo trường nào (mặc định là 'created_at')
+        $sortOrder = $request->input('sort_order', 'desc');  // Thứ tự sắp xếp (mặc định là 'desc')
 
-        // Sắp xếp (theo model hoặc brand)
-        $sort = $request->input('sort', 'model');
-        $direction = $request->input('direction', 'asc');
+        // Tạo query để lấy danh sách xe
+        $query = Vehicle::query();
 
-        // Lấy danh sách xe, lọc và sắp xếp
-        $vehicles = Vehicle::when($search, function($query, $search) {
-                return $query->where('license_plate', 'like', "%$search%")
-                             ->orWhere('model', 'like', "%$search%");
-            })
-            ->when($status, function($query, $status) {
-                return $query->where('status', $status);
-            })
-            ->orderBy($sort, $direction)
-            ->paginate(10);  // Phân trang với mỗi trang 10 xe
+        // Tìm kiếm theo tên xe hoặc biển số xe
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('vehicle_name', 'like', "%{$search}%")
+                  ->orWhere('license_plate', 'like', "%{$search}%");
+            });
+        }
 
-        return view('vehicles.index', compact('vehicles'));
+        // Lọc theo trạng thái xe
+        if ($status) {
+            $query->where('status', $status);
+        }
+
+        // Sắp xếp dữ liệu theo yêu cầu
+        $query->orderBy($sortBy, $sortOrder);
+
+        // Phân trang dữ liệu, mỗi trang hiển thị 5 kết quả
+        $vehicles = $query->paginate(5);
+
+        // Trả về view với dữ liệu đã được xử lý
+        return view('vehicles.index', compact('vehicles', 'search', 'status', 'sortBy', 'sortOrder'));
     }
-
     // Hiển thị form tạo mới (Create Form)
     public function create()
     {
