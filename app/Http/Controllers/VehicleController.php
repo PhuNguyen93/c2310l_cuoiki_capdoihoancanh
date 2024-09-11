@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
+use Illuminate\Support\Facades\Auth;
 
 class VehicleController extends Controller
 {
     // Hiển thị danh sách xe (Read, Sort, Filter, Pagination)
     public function index(Request $request)
     {
+        if (Auth::user()->role_id != 2) {
+            return redirect()->route('home')->with('error', 'You do not have the required permissions.');
+        }
         // Lấy dữ liệu từ các input tìm kiếm, lọc, sắp xếp
         $search = $request->input('search');
         $status = $request->input('status');
