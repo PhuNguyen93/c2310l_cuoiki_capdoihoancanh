@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vehicle;
+
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,9 +24,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+    public function index(){
+        $vehicles = Vehicle::all();
+        return view('home', compact('vehicles'));
     }
     public function dashboard(){
         return view('dashboard');
