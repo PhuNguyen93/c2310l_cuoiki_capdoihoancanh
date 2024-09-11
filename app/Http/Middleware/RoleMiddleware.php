@@ -19,7 +19,7 @@ class RoleMiddleware
     public function handle($request, Closure $next, $role)
     {
         // Kiểm tra xem người dùng đã đăng nhập hay chưa
-        dd();
+
         if (!Auth::check()) {
             return redirect('login');
         }
