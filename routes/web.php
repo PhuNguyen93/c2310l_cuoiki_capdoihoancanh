@@ -48,7 +48,7 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 
 // Xử lý việc đăng ký tài khoản
 Route::post('/register', [RegisterController::class, 'register']);
-
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 // Logout
 Route::post('/logout', function () {
     Auth::logout();
