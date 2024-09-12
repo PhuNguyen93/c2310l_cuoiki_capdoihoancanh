@@ -12,7 +12,7 @@
 
             <!-- Hiển thị hình ảnh của xe nếu có -->
             @if($vehicle->image)
-                <img src="{{ asset('storage/' . $vehicle->image) }}" class="img-fluid" alt="Vehicle Image">
+                <img src="{{ asset($vehicle->image) }}" class="img-fluid" alt="Vehicle Image">
             @endif
 
             <!-- Form thông tin người nhận xe và địa điểm -->
