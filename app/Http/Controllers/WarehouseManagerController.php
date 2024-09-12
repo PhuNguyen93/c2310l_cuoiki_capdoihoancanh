@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WarehouseManager;
 use App\Models\WarehouseStaff;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,10 @@ class WarehouseStaffController extends Controller
         $sort = $request->input('sort', 'name');
         $direction = $request->input('direction', 'asc');
 
-        $warehouseStaffs = WarehouseStaff::when($search, function($query, $search) {
-                return $query->where('name', 'like', "%$search%")
-                             ->orWhere('email', 'like', "%$search%");
-            })
+        $warehouseStaffs = WarehouseManager::when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%");
+        })
             ->orderBy($sort, $direction)
             ->paginate(10);  // Phân trang
 
@@ -40,13 +41,13 @@ class WarehouseStaffController extends Controller
             'phone_number' => 'required|max:20',
         ]);
 
-        WarehouseStaff::create($request->all());
+        WarehouseManager::create($request->all());
 
         return redirect()->route('warehouse_staff.index')->with('success', 'Nhân viên quản kho đã được thêm thành công!');
     }
 
     // Hiển thị chi tiết người quản kho (Read Detail)
-    public function show(WarehouseStaff $warehouseStaff)
+    public function show(WarehouseManager $warehouseStaff)
     {
         return view('warehouse_staff.show', compact('warehouseStaff'));
     }
