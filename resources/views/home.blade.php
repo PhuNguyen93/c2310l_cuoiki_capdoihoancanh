@@ -58,7 +58,7 @@
     </div>
     <div class="row">
         @foreach ($vehicles as $vehicle)
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4">`
                 <div class="card shadow-sm border-light">
                     <img src="{{ $vehicle->image ? asset($vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top" alt="{{ $vehicle->vehicle_name }}">
                     <div class="card-body">

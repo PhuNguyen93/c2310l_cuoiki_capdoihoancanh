@@ -28,4 +28,8 @@ class HomeController extends Controller
         // Xử lý trang dashboard nếu người dùng có quyền truy cập
         return view('dashboard');
     }
+    public function  profile(){
+        return view('profile');
+
+    }
 }
