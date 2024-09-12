@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Driver;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DriverController extends Controller
 {
     // Hiển thị danh sách tài xế (Read, Sort, Filter, Pagination)
     public function index(Request $request)
     {
+        if (Auth::user()->role_id != 2) {
+            return redirect()->route('home')->with('error', 'You do not have the required permissions.');
+        }
         // Lấy dữ liệu tìm kiếm và sắp xếp
         $search = $request->input('search');
         $sortBy = $request->input('sort_by', 'name');  // Sắp xếp theo trường nào (mặc định là 'name')

@@ -25,7 +25,11 @@ class HomeController extends Controller
             return redirect()->route('home')->with('error', 'You do not have the required permissions.');
         }
 
-        // Xử lý trang dashboard nếu người dùng có quyền truy cập
+        // Xử lý trang  nếu người dùng có quyền truy cập
         return view('dashboard');
+    }
+    public function  profile(){
+        return view('profile');
+
     }
 }

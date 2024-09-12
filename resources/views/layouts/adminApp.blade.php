@@ -24,7 +24,7 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active text-white" href="{{ route('dashboard') }}">
-                                <i class="bi bi-house"></i>Dash Board
+                                <i class="bi bi-house"></i>Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
@@ -34,7 +34,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('drivers.index') }}">
-                                <i class="bi bi-ui-radios-grid"></i>Drivers
+                                <i class="bi bi-ui-radios-grid"></i>Driverssss
                             </a>
                         </li>
                     </ul>
@@ -43,7 +43,7 @@
 
             <main class="col-md-9">
                 <div class="">
-                    <h1 class="h2">Dashboard</h1>
+                    <h1 class="h2"></h1>
                     <p class="text-muted">A free and open source Bootstrap 5 admin template</p>
                 </div>
                 @yield('content')
