@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     @if(session('success'))
         <div class="alert alert-success">
@@ -9,7 +10,7 @@
     @endif
 <div class="container-fluid">
     <!-- Slider -->
-    <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
+    <div id="imageSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -49,6 +50,22 @@
     </div>
 </div>
 
+<style>
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+}
+h5 {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+}
+p {
+    font-family: 'Arial', sans-serif;
+}
+</style>
+
+
 <!-- Product Section -->
 <div class="container mt-5">
     <div class="text-center mb-5">
@@ -58,6 +75,9 @@
     </div>
     <div class="row">
         @foreach ($vehicles as $vehicle)
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light transition-effect">
+                    <img src="{{ $vehicle->image ? asset('storage/' . $vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top" alt="{{ $vehicle->vehicle_name }}">
             <div class="col-md-4 mb-4">`
                 <div class="card shadow-sm border-light">
                     <img src="{{ $vehicle->image ? asset($vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top" alt="{{ $vehicle->vehicle_name }}">
@@ -89,7 +109,7 @@
             ['icon' => 'bi-laptop', 'title' => 'Digital Services', 'description' => 'Convenience at your fingertips with digital services.'],
         ] as $service)
             <div class="col-md-4 d-flex">
-                <div class="service-box p-4 bg-white border border-info rounded shadow-sm d-flex flex-column">
+                <div class="service-box p-4 bg-white border border-info rounded shadow-sm d-flex flex-column align-items-center">
                     <i class="{{ $service['icon'] }} fs-2 mb-3 text-info"></i>
                     <h5 class="mt-3 text-info">{{ $service['title'] }}</h5>
                     <p class="text-secondary mb-0">{{ $service['description'] }}</p>
@@ -103,7 +123,7 @@
 <div class="container my-5 p-5 bg-info rounded-3 text-light shadow-lg">
     <div class="row align-items-center">
         <div class="col-md-6">
-            <img src="{{ asset('assets/images/imgdemo2.jpg') }}" alt="Car Rental" class="img-fluid rounded-circle">
+            <img src="{{ asset('assets/images/imgdemo2.jpg') }}" alt="Car Rental" class="img-fluid rounded-circle transition-effect">
         </div>
         <div class="col-md-6">
             <div class="text-center mb-4">
@@ -116,5 +136,17 @@
     </div>
 </div>
 
+<style>
+.transition-effect {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.transition-effect:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+</style>
+
+@endsection
 
 @endsection

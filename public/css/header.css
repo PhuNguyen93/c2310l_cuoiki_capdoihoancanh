@@ -1,0 +1,121 @@
+body {
+    color: #138496; /* Màu chữ cho toàn bộ văn bản */
+}
+.navbar {
+    background-color: #ffffff; /* Màu nền trắng cho sự thanh lịch */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+}
+
+.navbar-brand img {
+    transition: transform 0.3s, filter 0.3s; /* Hiệu ứng mượt mà */
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1); /* Làm sáng logo khi hover */
+}
+
+.nav-link,
+.dropdown-item {
+    font-weight: 600; /* Tăng độ nặng cho font */
+    text-transform: uppercase; /* Chữ in hoa cho các mục menu */
+    color: #333; /* Màu chữ */
+    margin-right: 15px; /* Cách đều giữa các mục */
+    padding: 10px 15px; /* Tăng độ thoải mái cho các mục */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng mượt cho hover */
+    border-radius: 5px; /* Bo góc cho các mục */
+}
+
+.nav-link:hover,
+.dropdown-item:hover {
+    background-color: #138496; /* Màu nền mới khi hover */
+    color: #ffffff; /* Đổi màu chữ khi hover */
+}
+
+.dropdown-item {
+    transition: background-color 0.3s, color 0.3s; /* Hiệu ứng cho dropdown */
+}
+
+.dropdown-item:hover {
+    background-color: #e9ecef; /* Màu nền khi hover */
+    color: #138496; /* Đổi màu chữ khi hover */
+}
+
+.navbar-nav {
+    margin-left: 20px; /* Tạo khoảng cách cho navbar, đặc biệt khi nhỏ */
+}
+
+/* Tùy chỉnh cho dropdown */
+.dropdown {
+    position: relative; /* Để position absolute hoạt động đúng */
+}
+
+.dropdown-menu {
+    background-color: #ffffff; /* Nền trắng cho dropdown */
+    border: 1px solid #ddd; /* Đường viền nhạt */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    border-radius: 5px; /* Bo góc cho dropdown */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt mà */
+    margin-top: 5px; /* Khoảng cách từ button tới dropdown */
+    z-index: 1000; /* Đảm bảo dropdown hiển thị trên những phần tử khác */
+}
+
+.dropdown-item {
+    position: relative; /* Để cho hiệu ứng pseudo-element hoạt động */
+}
+
+/* Để đồng bộ phong cách */
+.dropdown-item::after {
+    content: ""; /* Tạo pseudo-element */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%; /* Bắt đầu với độ rộng 0 */
+    height: 3px; /* Độ cao của đường gạch */
+    background-color: #138496; /* Màu đường gạch */
+    transition: width 0.3s ease; /* Hiệu ứng chuyển động khi hover */
+}
+
+.dropdown-item:hover::after {
+    width: 100%; /* Đường gạch xuất hiện khi hover */
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa; /* Màu nền nhẹ khi hover */
+    color: #138496; /* Đổi màu chữ khi hover */
+}
+.auth-buttons {
+    display: flex;
+    gap: 20px; /* Khoảng cách giữa các nút */
+}
+
+.btn-login,.btn-signup {
+    padding: 10px 20px; /* Padding của nút */
+    font-size: 15px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ đậm */
+    text-align: center; /* Canh giữa chữ */
+    border-radius: 25px; /* Bo góc mềm mại */
+    text-decoration: none; /* Xóa gạch chân */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển động */
+    color: white; /* Màu chữ trắng */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    width: 150px; /* Đặt chiều rộng cố định cho cả hai nút */
+    margin: 0 7px;
+}
+/* Nút Login */
+.btn-login {
+    background: linear-gradient(to right, #138496, #1cc0da); /* Gradient cho nút Login */
+}
+
+.btn-login:hover {
+    transform: translateY(-3px); /* Nâng nhẹ lên khi hover */
+}
+
+/* Nút Sign Up */
+.btn-signup {
+    background: linear-gradient(to right, #dc3545, #c82333); /* Gradient cho nút Sign Up */
+}
+
+.btn-signup:hover {
+    transform: translateY(-3px); /* Nâng nhẹ lên khi hover */
+}
