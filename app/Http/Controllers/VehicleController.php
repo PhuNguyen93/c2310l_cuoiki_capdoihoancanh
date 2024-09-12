@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\VehicleBorrowing;
 class VehicleController extends Controller
 {
     // Hiển thị danh sách xe (Read, Sort, Filter, Pagination)
     public function index(Request $request)
     {
+        if (Auth::user()->role_id != 2) {
+            return redirect()->route('home')->with('error', 'You do not have the required permissions.');
+        }
         // Lấy dữ liệu từ các input tìm kiếm, lọc, sắp xếp
         $search = $request->input('search');
         $status = $request->input('status');
@@ -97,5 +101,28 @@ class VehicleController extends Controller
     {
         $vehicle->delete();
         return redirect()->route('vehicles.index')->with('success', 'Xe đã được xóa thành công!');
+    }
+
+    public function borrowVehicle(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'vehicle_id' => 'required|integer|exists:vehicles,id',
+            'borrow_date' => 'required|date',
+            'return_date' => 'required|date',
+            'total_price' => 'required|numeric',
+        ]);
+
+        // Create a new vehicle borrowing record
+        $borrowing = VehicleBorrowing::create([
+            'vehicle_id' => $request->input('vehicle_id'),
+            'driver_id' => Auth::id(), // Assuming the user is authenticated and is a driver
+            'borrow_date' => $request->input('borrow_date'),
+            'return_date' => $request->input('return_date'),
+            'status' => 'Borrowed',
+        ]);
+
+        // Respond with success
+        return response()->json(['success' => true]);
     }
 }

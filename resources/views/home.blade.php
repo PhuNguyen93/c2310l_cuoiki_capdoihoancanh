@@ -2,6 +2,12 @@
 
 @section('content')
 
+<div class="container">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 <div class="container-fluid">
     <!-- Slider -->
     <div id="imageSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
@@ -10,7 +16,6 @@
             <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{ asset('assets/images/car1.jpg') }}" class="d-block w-100 rounded" alt="Image 1">
@@ -34,7 +39,6 @@
                 </div>
             </div>
         </div>
-
         <button class="carousel-control-prev" type="button" data-bs-target="#imageSlider" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -61,6 +65,7 @@ p {
 }
 </style>
 
+
 <!-- Product Section -->
 <div class="container mt-5">
     <div class="text-center mb-5">
@@ -73,12 +78,15 @@ p {
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm border-light transition-effect">
                     <img src="{{ $vehicle->image ? asset('storage/' . $vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top" alt="{{ $vehicle->vehicle_name }}">
+            <div class="col-md-4 mb-4">`
+                <div class="card shadow-sm border-light">
+                    <img src="{{ $vehicle->image ? asset($vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top" alt="{{ $vehicle->vehicle_name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $vehicle->vehicle_name }}</h5>
                         <p class="card-text"><strong>Rental Price:</strong> ${{ $vehicle->rental_price }}/day</p>
                         <p class="card-text"><strong>Seats:</strong> {{ $vehicle->number_of_seats }}</p>
                         <p class="card-text"><strong>License Plate:</strong> {{ $vehicle->license_plate }}</p>
-                        <a href="#" class="btn btn-success">Rent Now</a>
+                        <a href="{{ route('checkout', ['vehicleId' => $vehicle->id]) }}" class="btn btn-success">Rent Now</a>
                     </div>
                 </div>
             </div>
@@ -138,5 +146,7 @@ p {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 </style>
+
+@endsection
 
 @endsection
