@@ -2,10 +2,9 @@
 
 @section('content')
 
-
 <div class="container-fluid">
     <!-- Slider -->
-    <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
+    <div id="imageSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -49,16 +48,16 @@
 
 <style>
 .carousel-caption {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 15px; /* Tạo sự mềm mại cho các góc */
-    padding: 20px; /* Padding thêm cho chú thích */
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
 }
 h5 {
-    font-family: 'Arial', sans-serif; /* Phong cách chữ hiện đại hơn */
-    font-weight: bold; /* Chữ đậm hơn */
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
 }
 p {
-    font-family: 'Arial', sans-serif; /* Phong cách chữ nhất quán */
+    font-family: 'Arial', sans-serif;
 }
 </style>
 
@@ -72,7 +71,7 @@ p {
     <div class="row">
         @foreach ($vehicles as $vehicle)
             <div class="col-md-4 mb-4">
-                <div class="card shadow-sm border-light">
+                <div class="card shadow-sm border-light transition-effect">
                     <img src="{{ $vehicle->image ? asset('storage/' . $vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top" alt="{{ $vehicle->vehicle_name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $vehicle->vehicle_name }}</h5>
@@ -90,11 +89,7 @@ p {
 <!-- Why Choose Us Section -->
 <div class="container my-5 p-5 bg-light rounded-3 shadow-lg">
     <h1 class="text-center mb-4 text-info">Why Choose Us</h1>
-    <p class="text-center mb-5 text-secondary">We prioritize your satisfaction and strive to make your car rental experience as
-            seamless as possible. With our wide selection of well-maintained vehicles, competitive prices, and simple
-            booking process, you can trust us to meet your needs. Our dedicated customer service team is available around
-            the clock to assist you, ensuring that you receive the support you deserve. Whether you need a car for a weekend
-            getaway or a long road trip, choose us for a hassle-free and enjoyable journey.</p>
+    <p class="text-center mb-5 text-secondary">We prioritize your satisfaction and strive to make your car rental experience as seamless as possible. With our wide selection of well-maintained vehicles, competitive prices, and simple booking process, you can trust us to meet your needs. Our dedicated customer service team is available around the clock to assist you, ensuring that you receive the support you deserve. Whether you need a car for a weekend getaway or a long road trip, choose us for a hassle-free and enjoyable journey.</p>
 
     <div class="row text-center g-4">
         @foreach([
@@ -106,7 +101,7 @@ p {
             ['icon' => 'bi-laptop', 'title' => 'Digital Services', 'description' => 'Convenience at your fingertips with digital services.'],
         ] as $service)
             <div class="col-md-4 d-flex">
-                <div class="service-box p-4 bg-white border border-info rounded shadow-sm d-flex flex-column">
+                <div class="service-box p-4 bg-white border border-info rounded shadow-sm d-flex flex-column align-items-center">
                     <i class="{{ $service['icon'] }} fs-2 mb-3 text-info"></i>
                     <h5 class="mt-3 text-info">{{ $service['title'] }}</h5>
                     <p class="text-secondary mb-0">{{ $service['description'] }}</p>
@@ -116,29 +111,11 @@ p {
     </div>
 </div>
 
-<style>
-.service-box {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Cho phép các khung mở rộng theo chiều cao */
-    height: 100%; /* Đảm bảo tất cả các khung đều có chiều cao nhất quán */
-}
-</style>
-
-<style>
-.service-box {
-    height: 100%; /* Đảm bảo tất cả khung có chiều cao bằng nhau */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Để các phần tử bên trong được phân bố đều */
-}
-</style>
-
 <!-- Information Section -->
 <div class="container my-5 p-5 bg-info rounded-3 text-light shadow-lg">
     <div class="row align-items-center">
         <div class="col-md-6">
-            <img src="{{ asset('assets/images/imgdemo2.jpg') }}" alt="Car Rental" class="img-fluid rounded-circle">
+            <img src="{{ asset('assets/images/imgdemo2.jpg') }}" alt="Car Rental" class="img-fluid rounded-circle transition-effect">
         </div>
         <div class="col-md-6">
             <div class="text-center mb-4">
@@ -150,5 +127,16 @@ p {
         </div>
     </div>
 </div>
+
+<style>
+.transition-effect {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.transition-effect:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+</style>
 
 @endsection
