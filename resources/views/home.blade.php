@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 <div class="container-fluid">
     <!-- Slider -->
     <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
@@ -109,4 +115,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

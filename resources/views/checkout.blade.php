@@ -31,6 +31,21 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pickupDate">Pickup Date</label>
+                    <input type="date" class="form-control" id="pickupDate" name="pickupDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dropoffDate">Dropoff Date</label>
+                    <input type="date" class="form-control" id="dropoffDate" name="dropoffDate" required>
+                </div>
+
+                <div class="form-group">
                     <label for="pickupLocation">Pickup Location</label>
                     <input type="text" class="form-control" id="pickupLocation" name="pickupLocation" required>
                 </div>
@@ -50,6 +65,11 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label for="totalPrice">Total Price</label>
+                    <input type="text" class="form-control" id="totalPrice" name="totalPrice" readonly>
+                </div>
+
                 <!-- Nút confirm và back -->
                 <a href="{{ url('/') }}" class="btn btn-secondary">Back</a>
                 <button type="submit" class="btn btn-primary">Confirm</button>
@@ -57,4 +77,38 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const pickupDateInput = document.getElementById('pickupDate');
+    const dropoffDateInput = document.getElementById('dropoffDate');
+    const totalPriceInput = document.getElementById('totalPrice');
+
+    // Giá thuê xe mỗi ngày (dữ liệu lấy từ biến $vehicle->rental_price từ PHP)
+    const rentalPricePerDay = parseFloat('{{ $vehicle->rental_price }}');
+
+    // Hàm tính tổng số tiền thuê
+    function calculateTotalPrice() {
+        const pickupDate = new Date(pickupDateInput.value);
+        const dropoffDate = new Date(dropoffDateInput.value);
+
+        if (pickupDate && dropoffDate && dropoffDate > pickupDate) {
+            const timeDiff = dropoffDate - pickupDate;
+            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Chuyển đổi ms sang ngày và làm tròn lên
+
+            // Tính tổng tiền
+            const totalPrice = rentalPricePerDay * daysDiff;
+            totalPriceInput.value = totalPrice.toFixed(2); // Hiển thị 2 chữ số thập phân
+        } else {
+            totalPriceInput.value = '0.00'; // Reset nếu không hợp lệ
+        }
+    }
+
+    // Gọi hàm tính tổng tiền khi thay đổi ngày nhận và ngày trả xe
+    pickupDateInput.addEventListener('change', calculateTotalPrice);
+    dropoffDateInput.addEventListener('change', calculateTotalPrice);
+});
+
+</script>
+
 @endsection

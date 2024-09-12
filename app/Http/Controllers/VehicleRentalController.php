@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
+use App\Mail\RentalConfirmationMail;
+use Illuminate\Support\Facades\Mail;
 
 class VehicleRentalController extends Controller
 {
@@ -26,20 +28,29 @@ public function confirmRental(Request $request)
 }
 
 public function processCheckout(Request $request)
-{
-    // Lấy dữ liệu từ form
-    $vehicleId = $request->input('vehicleId');
-    $recipientName = $request->input('recipientName');
-    $phone = $request->input('phone');
-    $pickupLocation = $request->input('pickupLocation');
-    $dropoffLocation = $request->input('dropoffLocation');
-    $paymentMethod = $request->input('paymentMethod');
+    {
+        // Validate the request
+        $validated = $request->validate([
+            'vehicleId' => 'required|integer',
+            'recipientName' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|email',
+            'pickupDate' => 'required|date',
+            'dropoffDate' => 'required|date',
+            'pickupLocation' => 'required|string',
+            'dropoffLocation' => 'required|string',
+            'paymentMethod' => 'required|string',
+        ]);
 
-    // Thêm logic lưu dữ liệu thanh toán vào database nếu cần
+        // Handle checkout logic (store details in database, etc.)
+        // ...
 
-    // Chuyển hướng người dùng đến trang thành công hoặc trang khác sau khi xử lý xong
-    return redirect()->route('success');
-}
+        // Send email confirmation
+        Mail::to($validated['email'])->send(new RentalConfirmationMail($validated));
+
+        // Display success message and redirect
+        return redirect()->route('home')->with('success', 'Rental reservation successful. An email confirmation has been sent.');
+    }
 
 
 
