@@ -78,4 +78,5 @@ class BorrowHistoryController extends Controller
         $borrowHistory->delete();
         return redirect()->route('borrow_histories.index')->with('success', 'Lịch sử mượn đã được xóa thành công!');
     }
+
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -27,6 +28,10 @@ class RegisterController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role_id' => 1, // Role_id là 1 cho tài xế
+        ]);
+        $driver = Driver::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
         ]);
 
         // Đăng nhập người dùng sau khi đăng ký

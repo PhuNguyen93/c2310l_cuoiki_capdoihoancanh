@@ -13,6 +13,8 @@ use App\Http\Controllers\VehicleBorrowingController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\VehicleRentalController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ProfileController;
+
 // Trang chủ
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -54,7 +56,7 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 
 // Xử lý việc đăng ký tài khoản
 Route::post('/register', [RegisterController::class, 'register']);
-Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
 // Logout
 Route::post('/logout', function () {
     Auth::logout();
