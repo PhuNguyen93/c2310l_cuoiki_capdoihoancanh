@@ -23,6 +23,11 @@
                     </div>
                     <ul class="nav flex-column">
                         <li class="nav-item">
+                            <a class="nav-link active text-white" href="{{ route('home') }}">
+                                <i class="bi bi-house"></i>Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active text-white" href="{{ route('dashboard') }}">
                                 <i class="bi bi-house"></i>Dashboard
                             </a>

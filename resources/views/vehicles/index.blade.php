@@ -59,7 +59,7 @@
                             <td>{{ $vehicle->vehicle_name }}</td>
                             <td>{{ $vehicle->license_plate }}</td>
                             <td>{{ $vehicle->status }}</td>
-                            <td>{{ number_format($vehicle->rental_price, 0, ',', '.') }} VNĐ</td>
+                            <td>{{ number_format($vehicle->rental_price, 0, ',', '.') }}</td>
                             <td>
                                 <a href="{{ route('vehicles.show', $vehicle) }}" class="btn btn-info btn-sm">Xem</a>
                                 <a href="{{ route('vehicles.edit', $vehicle) }}" class="btn btn-warning btn-sm">Sửa</a>
