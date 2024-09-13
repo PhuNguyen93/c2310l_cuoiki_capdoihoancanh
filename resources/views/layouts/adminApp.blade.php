@@ -42,6 +42,11 @@
                                 <i class="bi bi-ui-radios-grid"></i>Driverssss
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('warehouse_managers.index') }}">
+                                <i class="bi bi-ui-radios-grid"></i>WarehouseManager
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>

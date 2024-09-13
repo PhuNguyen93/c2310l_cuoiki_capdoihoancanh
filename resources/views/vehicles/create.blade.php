@@ -29,7 +29,7 @@
             <label for="image" class="form-label">Vehicle Image</label>
             <input type="file" class="form-control" id="image" name="image">
         </div>
-        <button type="submit" class="btn btn-success">Create Vehicle</button>
+        <button type="submit" class="btn btn-primary">Create Vehicle</button>
     </form>
 </div>
 @endsection
