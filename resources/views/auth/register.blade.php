@@ -46,11 +46,11 @@
         }
         .btn-primary {
             background-color: #007bff;
-            border-radius: 5px; 
+            border-radius: 5px;
             transition: background-color 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #0056b3; 
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -107,6 +107,15 @@
             <div class="form-outline mb-4">
                 <input type="password" id="password_confirmation" name="password_confirmation" class="form-control form-control-lg" placeholder="Confirm password" required />
                 <label class="form-label" for="password_confirmation">Confirm Password</label>
+            </div>
+
+            <!-- Driver License Number input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="driver_license_number" name="driver_license_number" class="form-control form-control-lg" placeholder="Enter driver license number" value="{{ old('driver_license_number') }}" />
+                <label class="form-label" for="driver_license_number">Driver License Number</label>
+                @error('driver_license_number')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="text-center text-lg-start mt-4">
