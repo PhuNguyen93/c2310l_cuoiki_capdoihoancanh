@@ -1,66 +1,185 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# BP CAR SERVICES
+BP CAR SERVICES là một nền tảng cho phép người dùng dễ dàng thuê xe với quy trình đơn giản và thuận tiện. Dự án nhằm mục đích cung cấp dịch vụ cho thuê xe linh hoạt cho cả cá nhân và doanh nghiệp, đáp ứng nhu cầu di chuyển nhanh chóng và an toàn.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Mục Lục
 
-## About Laravel
+- [Giới thiệu](#giới-thiệu)
+- [Yêu cầu Hệ thống](#yêu-cầu-hệ-thống)
+- [Cài đặt](#cài-đặt)
+- [Cấu trúc Dự án](#cấu-trúc-dự-án)
+- [Giới thiệu về Công nghệ](#giới-thiệu-về-công-nghệ)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Chức năng chính
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+----Chức năng người dùng:
+1. **Đăng ký và Đăng nhập:** 
+   - Người dùng có thể tạo tài khoản và đăng nhập để sử dụng dịch vụ.
 
-## Learning Laravel
+2. **Xem Profile:** 
+   - Người dùng có thể xem thông tin cá nhân của mình.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. **Lịch sử thuê xe:** 
+   - Người dùng có thể tra cứu lịch sử các chuyến thuê xe đã thực hiện.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. **Thuê xe:** 
+   - Khi người dùng chọn thuê xe, thông tin chuyến đi sẽ được gửi tới email mà họ đã đăng ký. Tuy nhiên, yêu cầu thuê xe cần được admin phê duyệt trước khi xác nhận.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-----Chức năng admin:
+1. **Quản lý người dùng:** 
+   - Admin có quyền duyệt hoặc từ chối yêu cầu thuê xe của người dùng.
 
-## Laravel Sponsors
+2. **Quản lý danh sách xe:** 
+   - Admin có thể thêm, sửa, xóa thông tin về xe có sẵn trong hệ thống.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Quản lý tài xế:** 
+   - Admin theo dõi và quản lý danh sách tài xế hoạt động.
 
-### Premium Partners
+4. **Theo dõi lịch sử mượn xe:** 
+   - Admin có thể xem lịch sử mượn xe của người dùng để quản lý tốt hơn.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Yêu cầu Hệ thống
 
-## Contributing
+- PHP >= 8.0
+- Composer
+- MySQL hoặc Dbearver
+- Laravel >= 8.x
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Cài đặt
 
-## Code of Conduct
+Hướng dẫn từng bước để cài đặt và chạy dự án:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Clone dự án về máy của bạn:
+    \`\`\`
+   git clone https://github.com/PhuNguyen93/c2310l_cuoiki_capdoihoancanh.git
+    \`\`\`
 
-## Security Vulnerabilities
+2. Clone dự án về và để trong htdocs
+    \`\`\`
+    xam-> htdocs->C2310L_cuoiki_capdoihoancanh
+    \`\`\`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. Cài đặt các phụ thuộc:
+    \`\`\`
+    Cài đặt composer(Composer-Setup.exe) từ https://getcomposer.org/download/
+    \`\`\`
+    cd vào thư mục C2310L_cuoiki_capdoihoancanh
+   \`\`\`
+    composer install
+   \`\`\`
 
-## License
+4. Tạo file `.env` từ mẫu:
+   \`\`\`
+   cp .env.example .env
+   \`\`\`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. Cấu hình database trong file `.env`.
+    Sau đó copy paste vào file .env để cấu hình dự án
+\\\\\\\\\\\\\\\\\\\\\\\
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:AyTz76iSjgp5KLITasLGglXO6Ba5FggiHM1Il9GQHh4=
+APP_DEBUG=true
+APP_TIMEZONE=UTC
+APP_URL=http://localhost
+
+APP_LOCALE=en
+APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=en_US
+
+APP_MAINTENANCE_DRIVER=file
+# APP_MAINTENANCE_STORE=database
+
+BCRYPT_ROUNDS=12
+
+LOG_CHANNEL=stack
+LOG_STACK=single
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=transport_company_db
+DB_USERNAME=root
+DB_PASSWORD=
+
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=null
+
+BROADCAST_CONNECTION=log
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=database
+
+CACHE_STORE=database
+CACHE_PREFIX=
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=trangiabaotest2201@gmail.com
+MAIL_PASSWORD="kkmo bnzt bpcq oxnr"
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=trangiabaotest2201@gmail.com
+MAIL_FROM_NAME="Vehicle Rental Service"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+VITE_APP_NAME="${APP_NAME}"
+\\\\\\\\\\\\\\\\\\\\\\\
+
+6. Chạy lệnh để tạo key ứng dụng:
+   \`\`\`
+   php artisan key:generate
+   \`\`\`
+
+7. Chạy migrations:
+   \`\`\`
+   php artisan migrate
+   \`\`\`
+
+8. Chạy db seed
+   \`\`\`
+   php artisan db:seed
+   \`\`\`
+
+9. Chạy ứng dụng:
+   \`\`\`
+   php artisan serve
+   \`\`\`
+
+## Cấu trúc Dự án
+
+Mô tả cấu trúc thư mục dự án của bạn, giải thích ngắn gọn về các thư mục và tệp quan trọng.
+
+\`\`\`
+- app/                # Chứa các model, controller
+- routes/             # Định nghĩa routes
+- resources/          # Chứa views, assets
+- database/           # Chứa migrations, factories
+\`\`\`
+
+## Giới thiệu về Công nghệ
+
+Các cộng nghệ mà nhóm đã sử dụng
+- Laravel
+- PHP
+- MySQL hoặc Dbeaver
+- Bootstrap (nếu có)
+- HTML/CSS
+
+
