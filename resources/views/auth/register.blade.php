@@ -118,6 +118,14 @@
                 @enderror
             </div>
 
+            <div class="form-outline mb-4">
+                <input type="text" id="phone" name="phone" class="form-control form-control-lg" placeholder="Enter driver license number" value="{{ old('phone') }}" />
+                <label class="form-label" for="phone">Driver License Number</label>
+                @error('phone')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
             <div class="text-center text-lg-start mt-4">
                 <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
                 <p class="small fw-bold mt-2 pt-1 mb-0 text-dark">Already have an account? <a href="{{ route('login') }}" class="link-danger">Login</a></p>

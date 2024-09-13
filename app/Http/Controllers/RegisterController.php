@@ -21,6 +21,7 @@ class RegisterController extends Controller
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:3', 'confirmed'],
             'driver_license_number' => ['nullable', 'string'], // Thêm validation cho driver_license_number
+            'phone' =>['required','numeric']
         ]);
 
         // Tạo tài khoản với role_id mặc định là 1 (Driver)
@@ -36,7 +37,7 @@ class RegisterController extends Controller
             Driver::create([
                 'user_id' => $user->id,
                 'driver_license_number' => $validated['driver_license_number'],
-                'phone' => 'N/A', // Cung cấp giá trị hợp lệ cho phone nếu cần
+               'phone' =>$validated['phone'],
             ]);
         }
 
