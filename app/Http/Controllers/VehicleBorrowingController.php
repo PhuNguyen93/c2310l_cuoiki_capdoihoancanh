@@ -11,7 +11,7 @@ class VehicleBorrowingController extends Controller
     public function index()
     {
         $borrowings = VehicleBorrowing::where('driver_id', Auth::id())->get();
-        return view('vehicle_borrowings.index', compact('borrowings'));
+        return view('vehicle_borrwings.index', compact('borrowings'));
     }
 
     public function create()

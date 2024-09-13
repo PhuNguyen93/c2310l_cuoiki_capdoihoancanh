@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Driver; // Thêm dòng này để sử dụng model Driver
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
