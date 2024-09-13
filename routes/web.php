@@ -46,6 +46,7 @@ Route::delete('/warehouse_managers/{warehouseManager}', [WarehouseManagerControl
 // Routes tìm kiếm, lọc, phân trang cho tài xế (Driver Management)
 Route::resource('drivers', DriverController::class);
 Route::get('drivers/search', [DriverController::class, 'index'])->name('drivers.search');
+Route::delete('/drivers/{driver}', [DriverController::class, 'destroy'])->name('drivers.destroy');
 
 // Routes tìm kiếm, lọc, phân trang cho lịch sử mượn xe (Borrow History)
 Route::resource('borrow-histories', BorrowHistoryController::class);

@@ -93,6 +93,13 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
+            <div class="form-outline mb-4">
+                <input type="phone" id="phone" name="phone" class="form-control form-control-lg" placeholder="Enter a valid phone number" value="{{ old('phone') }}" required />
+                <label class="form-label" for="phone">Phone number</label>
+                @error('phone')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
 
             <!-- Password input -->
             <div class="form-outline mb-3">
