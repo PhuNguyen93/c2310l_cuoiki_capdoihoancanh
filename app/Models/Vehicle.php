@@ -16,4 +16,22 @@ class Vehicle extends Model
         'rental_price',
         'status',
     ];
+
+    // Mối quan hệ với VehicleBorrowing (1 Vehicle có nhiều VehicleBorrowing)
+    public function borrowings()
+    {
+        return $this->hasMany(VehicleBorrowing::class);
+    }
+
+    // Trả về đường dẫn đầy đủ của hình ảnh
+    public function getImageUrlAttribute()
+    {
+        return asset('assets/images/' . $this->image);
+    }
+
+    // Trả về giá thuê theo định dạng tiền tệ
+    public function getFormattedRentalPriceAttribute()
+    {
+        return number_format($this->rental_price, 2);
+    }
 }

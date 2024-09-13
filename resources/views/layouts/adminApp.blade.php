@@ -23,6 +23,11 @@
                     </div>
                     <ul class="nav flex-column">
                         <li class="nav-item">
+                            <a class="nav-link active text-white" href="{{ route('home') }}">
+                                <i class="bi bi-house"></i>Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active text-white" href="{{ route('dashboard') }}">
                                 <i class="bi bi-house"></i>Dashboard
                             </a>
@@ -35,6 +40,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('drivers.index') }}">
                                 <i class="bi bi-ui-radios-grid"></i>Driverssss
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('warehouse_managers.index') }}">
+                                <i class="bi bi-ui-radios-grid"></i>WarehouseManager
                             </a>
                         </li>
                     </ul>

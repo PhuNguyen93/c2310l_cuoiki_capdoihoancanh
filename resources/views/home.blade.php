@@ -78,11 +78,10 @@
             @foreach ($vehicles as $vehicle)
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm border-light transition-effect">
-                        <img src="{{ $vehicle->image ? asset($vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top" alt="{{ $vehicle->vehicle_name }}">
+                        <img src="{{ $vehicle->image ? asset('storage/' . $vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top" alt="{{ $vehicle->vehicle_name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $vehicle->vehicle_name }}</h5>
                             <p class="card-text"><strong>Rental Price:</strong> ${{ $vehicle->rental_price }}/day</p>
-                            <p class="card-text"><strong>Seats:</strong> {{ $vehicle->number_of_seats }}</p>
                             <p class="card-text"><strong>License Plate:</strong> {{ $vehicle->license_plate }}</p>
                             <a href="{{ route('checkout', ['vehicleId' => $vehicle->id]) }}" class="btn btn-success">Rent Now</a>
                         </div>

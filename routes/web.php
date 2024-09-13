@@ -14,6 +14,7 @@ use App\Http\Controllers\RentalController;
 use App\Http\Controllers\VehicleRentalController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WarehouseManagerController;
 
 // Trang chủ
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -33,9 +34,14 @@ Route::delete('/vehicles/{vehicle}', [VehicleController::class, 'destroy'])->nam
 Route::post('/vehicles/borrow', [VehicleController::class, 'borrowVehicle'])->name('vehicles.borrow');
 
 
-// Routes tìm kiếm, lọc, phân trang cho nhân viên quản kho (Warehouse Staff)
-Route::resource('warehouse-staff', WarehouseStaffController::class);
-Route::get('warehouse-staff/search', [WarehouseStaffController::class, 'index'])->name('warehouse-staff.search');
+// Route hiển thị danh sách quản lý kho
+Route::get('/warehouse_managers', [WarehouseManagerController::class, 'index'])->name('warehouse_managers.index');
+Route::get('/warehouse_managers/create', [WarehouseManagerController::class, 'create'])->name('warehouse_managers.create');
+Route::post('/warehouse_managers', [WarehouseManagerController::class, 'store'])->name('warehouse_managers.store');
+Route::get('/warehouse_managers/{warehouseManager}', [WarehouseManagerController::class, 'show'])->name('warehouse_managers.show');
+Route::get('/warehouse_managers/{warehouseManager}/edit', [WarehouseManagerController::class, 'edit'])->name('warehouse_managers.edit');
+Route::put('/warehouse_managers/{warehouseManager}', [WarehouseManagerController::class, 'update'])->name('warehouse_managers.update');
+Route::delete('/warehouse_managers/{warehouseManager}', [WarehouseManagerController::class, 'destroy'])->name('warehouse_managers.destroy');
 
 // Routes tìm kiếm, lọc, phân trang cho tài xế (Driver Management)
 Route::resource('drivers', DriverController::class);
