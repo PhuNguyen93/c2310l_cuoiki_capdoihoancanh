@@ -124,10 +124,12 @@ class DriverController extends Controller
     // Xóa tài xế (Delete)
     public function destroy(Driver $driver)
     {
+        // Xóa thông tin tài xế
+        $driver->delete();
+    
         // Xóa user liên quan
         $driver->user->delete();
-        $driver->delete();
-
+    
         return redirect()->route('drivers.index')->with('success', 'Tài xế đã được xóa thành công!');
     }
 }
