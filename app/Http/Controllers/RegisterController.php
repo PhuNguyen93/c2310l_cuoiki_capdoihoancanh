@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +29,7 @@ class RegisterController extends Controller
             'password' => Hash::make($validated['password']),
             'role_id' => 1, // Role_id là 1 cho tài xế
         ]);
+
 
         // Đăng nhập người dùng sau khi đăng ký
         Auth::login($user);
