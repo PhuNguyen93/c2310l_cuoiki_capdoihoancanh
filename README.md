@@ -42,7 +42,7 @@ BP CAR SERVICES là một nền tảng cho phép người dùng dễ dàng thuê
 
 - PHP >= 8.0
 - Composer
-- MySQL hoặc Dbearver
+- Dbearver
 - Laravel >= 8.x
 
 ## Cài đặt
@@ -142,6 +142,75 @@ AWS_USE_PATH_STYLE_ENDPOINT=false
 VITE_APP_NAME="${APP_NAME}"
 \\\\\\\\\\\\\\\\\\\\\\\
 
+**Mở Dbeaver và copy paste đoạn mã sql sau** 
+   \`\`\`
+CREATE DATABASE transport_company_db;
+USE transport_company_db;
+
+CREATE TABLE roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    role_name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (role_id) REFERENCES roles(id)
+);
+
+CREATE TABLE vehicles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vehicle_name VARCHAR(255) NOT NULL,
+    license_plate VARCHAR(20) UNIQUE NOT NULL,
+    image VARCHAR(255),  -- Đường dẫn hoặc tên file ảnh của xe
+    rental_price DECIMAL(10, 2) NOT NULL,  -- Giá thuê xe, với 2 chữ số thập phân
+    status ENUM('Available', 'Borrowed') DEFAULT 'Available',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE drivers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    driver_license_number VARCHAR(50) UNIQUE NOT NULL,
+    phone VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE warehouse_managers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    employee_number VARCHAR(50) UNIQUE NOT NULL,
+    phone VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE vehicle_borrowings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vehicle_id INT NOT NULL,
+    driver_id INT NOT NULL,
+    borrow_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    return_date TIMESTAMP NULL,
+    status ENUM('Borrowed', 'Returned') DEFAULT 'Borrowed',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id),
+    FOREIGN KEY (driver_id) REFERENCES drivers(id)
+);
+
+INSERT INTO roles (role_name) VALUES ('Driver'), ('Warehouse Manager');
+   \`\`\`
+
+   
 6. Chạy lệnh để tạo key ứng dụng:
    \`\`\`
    php artisan key:generate
@@ -157,7 +226,14 @@ VITE_APP_NAME="${APP_NAME}"
    php artisan db:seed
    \`\`\`
 
-9. Chạy ứng dụng:
+9. Chạy torage:link để kết nối hình ảnh:
+   \`\`\`
+   php artisan storage:link
+   \`\`\`
+    Thư mục lưu ảnh: Public/assets/images
+    \`\`\`
+
+10. Chạy ứng dụng:
    \`\`\`
    php artisan serve
    \`\`\`
@@ -165,21 +241,21 @@ VITE_APP_NAME="${APP_NAME}"
 ## Cấu trúc Dự án
 
 Mô tả cấu trúc thư mục dự án của bạn, giải thích ngắn gọn về các thư mục và tệp quan trọng.
-
-\`\`\`
+    \`\`\`
 - app/                # Chứa các model, controller
 - routes/             # Định nghĩa routes
 - resources/          # Chứa views, assets
-- database/           # Chứa migrations, factories
-\`\`\`
+- database/           # Chứa migrations, factories  
+    \`\`\`
 
 ## Giới thiệu về Công nghệ
 
 Các cộng nghệ mà nhóm đã sử dụng
+    \`\`\`
 - Laravel
 - PHP
-- MySQL hoặc Dbeaver
+- Dbeaver
 - Bootstrap (nếu có)
 - HTML/CSS
-
+    \`\`\`
 
