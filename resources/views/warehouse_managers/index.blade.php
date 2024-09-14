@@ -1,51 +1,40 @@
 @extends('layouts.adminApp')
 
 @section('content')
-<div class="container">
-    <h1 class="text-center my-4 text-primary">Driver List</h1>
+<div class="container mt-4">
+    <h1 class="text-center my-4 text-primary">Warehouse Manager List</h1>
 
     <!-- Form tìm kiếm -->
-    <form method="GET" action="{{ route('drivers.index') }}" class="mb-4">
+    <form method="GET" action="{{ route('warehouse_managers.index') }}" class="mb-4">
         <div class="d-flex">
-            <input type="text" name="search" placeholder="Search by name, email, phone, or license" value="{{ request('search') }}" class="form-control w-25 me-2">
+            <input type="text" name="search" placeholder="Search by name or email" value="{{ request('search') }}" class="form-control w-25 me-2">
             <button type="submit" class="btn btn-outline-primary">Search</button>
-            <a href="{{ route('drivers.create') }}" class="btn btn-success ms-auto">Add New Driver</a>
+            <a href="{{ route('warehouse_managers.create') }}" class="btn btn-success ms-auto">Add New Warehouse Manager</a>
         </div>
     </form>
 
-    <!-- Bảng danh sách tài xế -->
+    <!-- Bảng danh sách quản lý kho -->
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead class="table-primary text-center">
                 <tr>
                     <th>
-                        <a href="{{ route('drivers.index', ['search' => request('search'), 'sort_by' => 'name', 'sort_order' => request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
-                            class="text-decoration-none text-dark">
+                        <a href="{{ route('warehouse_managers.index', ['search' => request('search'), 'sort_by' => 'name', 'sort_order' => request('sort_order') === 'asc' ? 'desc' : 'asc']) }}" class="text-decoration-none text-dark">
                             Name @if (request('sort_by') === 'name')
                                 <small>{{ request('sort_order') === 'asc' ? '↑' : '↓' }}</small>
                             @endif
                         </a>
                     </th>
                     <th>
-                        <a href="{{ route('drivers.index', ['search' => request('search'), 'sort_by' => 'email', 'sort_order' => request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
-                            class="text-decoration-none text-dark">
+                        <a href="{{ route('warehouse_managers.index', ['search' => request('search'), 'sort_by' => 'email', 'sort_order' => request('sort_order') === 'asc' ? 'desc' : 'asc']) }}" class="text-decoration-none text-dark">
                             Email @if (request('sort_by') === 'email')
                                 <small>{{ request('sort_order') === 'asc' ? '↑' : '↓' }}</small>
                             @endif
                         </a>
                     </th>
                     <th>
-                        <a href="{{ route('drivers.index', ['search' => request('search'), 'sort_by' => 'phone', 'sort_order' => request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
-                            class="text-decoration-none text-dark">
+                        <a href="{{ route('warehouse_managers.index', ['search' => request('search'), 'sort_by' => 'phone', 'sort_order' => request('sort_order') === 'asc' ? 'desc' : 'asc']) }}" class="text-decoration-none text-dark">
                             Phone @if (request('sort_by') === 'phone')
-                                <small>{{ request('sort_order') === 'asc' ? '↑' : '↓' }}</small>
-                            @endif
-                        </a>
-                    </th>
-                    <th>
-                        <a href="{{ route('drivers.index', ['search' => request('search'), 'sort_by' => 'driver_license_number', 'sort_order' => request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
-                            class="text-decoration-none text-dark">
-                            Driver License @if (request('sort_by') === 'driver_license_number')
                                 <small>{{ request('sort_order') === 'asc' ? '↑' : '↓' }}</small>
                             @endif
                         </a>
@@ -54,25 +43,24 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @forelse ($drivers as $driver)
+                @forelse ($warehouseManagers as $manager)
                     <tr>
-                        <td>{{ $driver->user->name }}</td>
-                        <td>{{ $driver->user->email }}</td>
-                        <td>{{ $driver->phone }}</td>
-                        <td>{{ $driver->driver_license_number }}</td>
+                        <td>{{ $manager->user->name }}</td>
+                        <td>{{ $manager->user->email }}</td>
+                        <td>{{ $manager->phone }}</td>
                         <td>
-                            <a href="{{ route('drivers.show', $driver) }}" class="btn btn-info btn-sm">View</a>
-                            <a href="{{ route('drivers.edit', $driver) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('drivers.destroy', $driver) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('warehouse_managers.show', $manager) }}" class="btn btn-info btn-sm">View</a>
+                            <a href="{{ route('warehouse_managers.edit', $manager) }}" class="btn btn-warning btn-sm">Edit</a>
+                            {{-- <form action="{{ route('warehouse_managers.destroy', $manager) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center">No drivers found.</td>
+                        <td colspan="4" class="text-center">No warehouse managers found.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -81,7 +69,7 @@
 
     <!-- Phân trang -->
     <div class="mt-4">
-        {{ $drivers->appends(request()->query())->links('pagination::bootstrap-5') }}
+        {{ $warehouseManagers->appends(request()->query())->links('pagination::bootstrap-5') }}
     </div>
 </div>
 @endsection

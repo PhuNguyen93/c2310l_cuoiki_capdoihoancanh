@@ -89,33 +89,33 @@ body {
     gap: 20px; /* Khoảng cách giữa các nút */
 }
 
-.btn-login,.btn-signup {
-    padding: 10px 20px; /* Padding của nút */
-    font-size: 15px; /* Kích thước chữ */
-    font-weight: bold; /* Chữ đậm */
-    text-align: center; /* Canh giữa chữ */
-    border-radius: 25px; /* Bo góc mềm mại */
-    text-decoration: none; /* Xóa gạch chân */
-    transition: all 0.3s ease; /* Hiệu ứng chuyển động */
-    color: white; /* Màu chữ trắng */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
-    width: 150px; /* Đặt chiều rộng cố định cho cả hai nút */
-    margin: 0 7px;
+.btn-login, .btn-signup {
+    display: inline-block; /* Allows padding and margin */
+    padding: 10px 20px; /* Comfortable padding */
+    border-radius: 30px; /* All corners rounded */
+    font-size: 15px; /* Font size */
+    font-weight: bold; /* Makes text bold */
+    text-align: center; /* Centers text */
+    text-decoration: none; /* Removes underline */
+    color: white; /* White text color */
+    transition: all 0.3s ease; /* Smooth transition */
+    margin: 0 10px; /* Space between buttons */
 }
-/* Nút Login */
+
+/* Login Button */
 .btn-login {
-    background: linear-gradient(to right, #138496, #1cc0da); /* Gradient cho nút Login */
+    background-color: #4CAF50; /* Green color */
 }
 
 .btn-login:hover {
-    transform: translateY(-3px); /* Nâng nhẹ lên khi hover */
+    background-color: #45a049; /* Darker green on hover */
 }
 
-/* Nút Sign Up */
+/* Signup Button */
 .btn-signup {
-    background: linear-gradient(to right, #dc3545, #c82333); /* Gradient cho nút Sign Up */
+    background-color: #007BFF; /* Blue color */
 }
 
 .btn-signup:hover {
-    transform: translateY(-3px); /* Nâng nhẹ lên khi hover */
+    background-color: #0056b3; /* Darker blue on hover */
 }
