@@ -88,3 +88,5 @@ Route::get('/checkout/{vehicleId}', [VehicleRentalController::class, 'checkout']
 Route::post('/checkout/process', [VehicleRentalController::class, 'processCheckout'])->name('processCheckout');
 
 Route::post('/checkout', [VehicleRentalController::class, 'processCheckout'])->name('processCheckout');
+
+Route::post('/processCheckout', [VehicleBorrowingController::class, 'store'])->name('processCheckout');
