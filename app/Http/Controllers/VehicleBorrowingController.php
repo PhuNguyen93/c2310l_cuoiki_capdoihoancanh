@@ -49,6 +49,7 @@ class VehicleBorrowingController extends Controller
     $vehicleBorrowing->vehicle_id = $request->vehicleId;
     $vehicleBorrowing->driver_id = $userId;
     $vehicleBorrowing->borrow_date = $request->pickupDate;
+    $vehicleBorrowing->return_date = $request->dropoffDate; // return_date
     $vehicleBorrowing->status = 'Borrowed';
     $vehicleBorrowing->save();
 
