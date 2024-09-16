@@ -18,10 +18,11 @@ class RentalConfirmationMail extends Mailable
     }
 
     public function build()
-    {
-        return $this->view('emails.rental_confirmation')
-                    ->with('details', $this->details)
-                    ->subject('Vehicle Rental Confirmation');
-    }
+{
+    return $this->view('emails.rental_confirmation')
+                ->with('details', $this->details)
+                ->subject('Vehicle Rental Confirmation');
+}
+
 }
 
