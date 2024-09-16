@@ -73,6 +73,7 @@
     <div class="row">
 
         @foreach ($vehicles as $vehicle)
+        @if ($vehicle->status === 'Available')
             <div class="col-md-4 mb-4 d-flex justify-content-center">
                 <div class="card shadow-sm transition-effect" style="width: 100%;">
                     <img src="{{ $vehicle->image ? asset('storage/' . $vehicle->image) : asset('assets/images/default-car.jpg') }}" class="card-img-top uniform-image" alt="{{ $vehicle->vehicle_name }}">
@@ -84,7 +85,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @endif
+    @endforeach
+
 
     </div>
 </div>
