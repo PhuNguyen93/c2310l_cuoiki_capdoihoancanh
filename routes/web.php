@@ -13,6 +13,7 @@ use App\Http\Controllers\VehicleBorrowingController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\VehicleRentalController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WarehouseManagerController;
 
@@ -20,7 +21,7 @@ use App\Http\Controllers\WarehouseManagerController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Dashboard (sau khi đăng nhập)
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 // Routes quản lý xe (Vehicle Management)
 Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');

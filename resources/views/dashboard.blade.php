@@ -111,11 +111,44 @@
                     </div>
                 </div>
             </div>
-                
+
             <div class="row search-box">
                 <div class="col-md-12">
                     <input type="text" class="form-control" placeholder="Search for cars...">
+
                 </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Recent Activities</h5>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Customer Name</th>
+                                            <th>Vehicle</th>
+                                            <th>Rental Date</th>
+                                            <th>Return Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($borrowings as $borrowing)
+                                        <tr>
+                                            <td>{{ $borrowing->driver->user->name }}</td>
+                                            <td>{{ $borrowing->vehicle->name }}</td>
+                                            <td>{{ $borrowing->borrow_date->format('d/m/Y') }}</td>
+                                            <td>{{ $borrowing->return_date ? $borrowing->return_date->format('d/m/Y') : 'Not Returned' }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
             </div>
         </main>
     </div>
