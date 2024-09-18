@@ -39,7 +39,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('drivers.index') }}">
-                                <i class="bi bi-ui-radios-grid"></i>Driverssss
+                                <i class="bi bi-ui-radios-grid"></i>Drivers
                             </a>
                         </li>
                         <li class="nav-item">
