@@ -18,7 +18,6 @@
             border-radius: 15px;
             transition: transform 0.3s, box-shadow 0.3s;
             height: 100%;
-            margin: 10px; /* Reduce the spacing between cards */
         }
         .card:hover {
             transform: scale(1.05);
@@ -29,6 +28,9 @@
             border-radius: 15px;
             color: #fff;
         }
+        .bg-primary { background-color: #007bff !important; }
+        .bg-success { background-color: #28a745 !important; }
+        .bg-warning { background-color: #ffc107 !important; }
     </style>
 </head>
 <body>
@@ -39,36 +41,36 @@
 <div class="container-fluid">
     <div class="row">
         <main role="main" class="col-12">
-            <h1 class="h2 text-center">Car Rental Dashboard</h1>
+            <h1 class="h2 text-center my-4">Car Rental Dashboard</h1>
             <div class="row mb-4">
                 <div class="col-md-4">
-                    <div class="card bg-primary dashboard-card widget">
+                    <div class="card bg-primary widget">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-car widget-icon"></i> Total Cars</h5>
-                            <p class="card-text">0</p>
+                            <h5 class="card-title"><i class="bi bi-car-front widget-icon"></i> Total Cars</h5>
+                            <p class="card-text fs-2">0</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card bg-success dashboard-card widget">
+                    <div class="card bg-success widget">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-car-side widget-icon"></i> Cars Currently Rented</h5>
-                            <p class="card-text">0</p>
+                            <h5 class="card-title"><i class="bi bi-car-side widget-icon"></i> Cars Currently Rented</h5>
+                            <p class="card-text fs-2">0</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card bg-warning dashboard-card widget">
+                    <div class="card bg-warning widget">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fas fa-dollar-sign widget-icon"></i> Total Revenue</h5>
-                            <p class="card-text">0 VND</p>
+                            <h5 class="card-title"><i class="bi bi-cash widget-icon"></i> Total Revenue</h5>
+                            <p class="card-text fs-2">0 VND</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Revenue Over Time</h5>
@@ -77,7 +79,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Recent Activities</h5>
@@ -87,67 +89,60 @@
                                         <th>Customer Name</th>
                                         <th>Vehicle</th>
                                         <th>Rental Date</th>
+                                        <th>Return Date</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($borrowings as $borrowing)
                                     <tr>
-                                        <td>John Doe</td>
-                                        <td>Sports Car</td>
-                                        <td>01/01/2023</td>
+                                        <td>{{ $borrowing->driver->user->name }}</td>
+                                        <td>{{ $borrowing->vehicle->vehicle_name }}</td>
+                                        <td>{{ $borrowing->borrow_date->format('d/m/Y') }}</td>
+                                        <td>{{ $borrowing->return_date ? $borrowing->return_date->format('d/m/Y') : 'Not Returned' }}</td>
+                                        <td>{{ $borrowing->vehicle->status }}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Jane Smith</td>
-                                        <td>SUV</td>
-                                        <td>05/01/2023</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mary Johnson</td>
-                                        <td>Sedan</td>
-                                        <td>10/01/2023</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
+
+                            <!-- Pagination links -->
+                            <div class="d-flex justify-content-center mt-4">
+    <nav aria-label="Page navigation">
+        <ul class="pagination pagination-rounded">
+            <li class="page-item {{ $borrowings->onFirstPage() ? 'disabled' : '' }}">
+                <a class="page-link" href="{{ $borrowings->url(1) }}" aria-label="First">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item {{ $borrowings->onFirstPage() ? 'disabled' : '' }}">
+                <a class="page-link" href="{{ $borrowings->previousPageUrl() }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            @foreach ($borrowings->getUrlRange(1, $borrowings->lastPage()) as $page => $url)
+                <li class="page-item {{ $page == $borrowings->currentPage() ? 'active' : '' }}">
+                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                </li>
+            @endforeach
+
+            <li class="page-item {{ $borrowings->hasMorePages() ? '' : 'disabled' }}">
+                <a class="page-link" href="{{ $borrowings->nextPageUrl() }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li class="page-item {{ $borrowings->hasMorePages() ? '' : 'disabled' }}">
+                <a class="page-link" href="{{ $borrowings->url($borrowings->lastPage()) }}" aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row search-box">
-                <div class="col-md-12">
-                    <input type="text" class="form-control" placeholder="Search for cars...">
-
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Recent Activities</h5>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Customer Name</th>
-                                            <th>Vehicle</th>
-                                            <th>Rental Date</th>
-                                            <th>Return Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($borrowings as $borrowing)
-                                        <tr>
-                                            <td>{{ $borrowing->driver->user->name }}</td>
-                                            <td>{{ $borrowing->vehicle->name }}</td>
-                                            <td>{{ $borrowing->borrow_date->format('d/m/Y') }}</td>
-                                            <td>{{ $borrowing->return_date ? $borrowing->return_date->format('d/m/Y') : 'Not Returned' }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-
-                                </table>
-                            </div>
-                        </div>
-                    </div>
 
             </div>
         </main>
